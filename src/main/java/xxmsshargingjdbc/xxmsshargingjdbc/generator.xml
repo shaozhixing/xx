@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!-- 配置文件 -->
+    <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+        <!-- 自定义注释生成 -->
+        <!--<commentGenerator type="org.mybatis.generator.internal.HairyCommentGenerator">-->
+            <!--<property name="javaFileEncoding" value="UTF-8"/>-->
+            <!--&lt;!&ndash; 是否去除自动生成的注释 true：是 ： false:否 &ndash;&gt;-->
+            <!--<property name="suppressAllComments" value="false" />-->
+            <!--<property name="suppressDate" value="true" />-->
+        <!--</commentGenerator>-->
+        <!-- jdbc -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://47.95.213.129:3306/test?useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true&amp;useSSL=false&amp;failOverReadOnly=false"
+                        userId="root"
+                        password="root">
+        </jdbcConnection>
+        <!-- domain -->
+        <javaModelGenerator targetPackage="com.gofun.car.model" targetProject="src/main/java"/>
+        <!-- xml -->
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>
+        <!-- mapper dao -->
+        <javaClientGenerator targetPackage="com.gofun.car.mapper" targetProject="src/main/java" type="XMLMAPPER"/>
+        <!--通配所有表-->
+        <!--<table tableName="%">-->
+        <table tableName="user" domainObjectName="User"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <!-- <property name="useActualColumnNames" value="true"/>  -->
+        </table>
+    </context>
+</generatorConfiguration>
