@@ -11,4 +11,6 @@ public interface UserService {
 
     User selectById (String userId);
 
+    Integer insert (User user);
+
 }

@@ -43,7 +43,7 @@ public class MyAlgorithm implements PreciseShardingAlgorithm<String> {
     }
 
     public static void main(String[] args) {
-        String value = "d6e3ba5c55f9487791a8bb92e48f10fe";
+        String value = "gd1gsa";
         int length = value.length();
         int ascii = value.charAt(length - 1);
         String suffix = ascii % 10 + "";

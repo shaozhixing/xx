@@ -13,4 +13,9 @@
         select * from user where user_id = #{userId, jdbcType=VARCHAR}
     </select>
 
+    <insert id="insert" parameterType="xxmsshargingjdbc.xxmsshargingjdbc.model.User">
+        insert into user (user_id, user_name, create_time)
+        values (#{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{createTime,jdbcType=INTEGER})
+    </insert>
+
 </mapper>

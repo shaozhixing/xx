@@ -11,4 +11,6 @@ public interface UserMapper {
 
     public User selectById(String userId);
 
+    int insert (User user);
+
 }
