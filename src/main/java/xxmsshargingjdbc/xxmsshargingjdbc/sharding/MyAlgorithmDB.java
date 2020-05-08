@@ -7,25 +7,11 @@ import xxmsshargingjdbc.xxmsshargingjdbc.utils.ApplicationContextUtils;
 import java.util.Collection;
 
 /**
- * @Author: wudy
- * @Date: 2019/5/31 12:31
- * @Version 1.0
- * @Desc
+ * @author: shaozhixing
+ * @date: 2020/5/8 22:16
+ * @copyright: gofun
  */
-public class MyAlgorithm implements PreciseShardingAlgorithm<String> {
-
-    private static int nodes = 10;
-
-    public MyAlgorithm() {
-
-    }
-
-//    @Override
-//    public Collection<String> doSharding(Collection<String> collection, ShardingValue shardingValue) {
-//       JsonUtil.toJson(collection);
-//       JsonUtil.toJson(shardingValue);
-//        return null;
-//    }
+public class MyAlgorithmDB implements PreciseShardingAlgorithm<String> {
 
     @Override
     public String doSharding(Collection<String> collection, PreciseShardingValue<String> preciseShardingValue) {
@@ -33,7 +19,7 @@ public class MyAlgorithm implements PreciseShardingAlgorithm<String> {
         String value = preciseShardingValue.getValue();
         int length = value.length();
         int ascii = value.charAt(length - 1);
-        String suffix = ascii % config.getShardNode() + "";
+        String suffix = ascii % config.getTableNode() + "";
         for(String targetTableName : collection) {
             if(targetTableName.endsWith(suffix)) {
                 return targetTableName;
@@ -43,17 +29,11 @@ public class MyAlgorithm implements PreciseShardingAlgorithm<String> {
     }
 
     public static void main(String[] args) {
-        String value = "gd1gsa";
+        String value = "d7rxezrmzojb75mlse7ouvyewigc2img";
         int length = value.length();
         int ascii = value.charAt(length - 1);
-        String suffix = ascii % 10 + "";
+        String suffix = ascii % 2 + "";
         System.out.println(suffix);
     }
 
-//    @Override
-//    public Collection<String> doSharding(Collection<String> collection, Collection<ShardingValue> collection1) {
-//        JsonUtil.toJson(collection);
-//        JsonUtil.toJson(collection1);
-//        return null;
-//    }
 }

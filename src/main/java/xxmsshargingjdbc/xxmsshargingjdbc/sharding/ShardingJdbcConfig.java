@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "shardxx")
 public class ShardingJdbcConfig {
 
+    private int tableNode;
+
     private int shardNode;
 
     public int getShardNode() {
@@ -15,5 +17,13 @@ public class ShardingJdbcConfig {
 
     public void setShardNode(int shardNode) {
         this.shardNode = shardNode;
+    }
+
+    public int getTableNode() {
+        return tableNode;
+    }
+
+    public void setTableNode(int tableNode) {
+        this.tableNode = tableNode;
     }
 }

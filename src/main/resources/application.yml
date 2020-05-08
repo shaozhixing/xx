@@ -30,11 +30,24 @@ spring:
 sharding:
   jdbc:
     datasource:
-      names: xx-sharding-jdbc
-      xx-sharding-jdbc:
+      names: test0,test1
+      test0:
         type: com.zaxxer.hikari.HikariDataSource
         driver-class-name: com.mysql.jdbc.Driver
-        jdbcUrl: jdbc:mysql://47.95.213.129:3306/test?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&failOverReadOnly=false
+        jdbcUrl: jdbc:mysql://47.95.213.129:3306/test0?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&failOverReadOnly=false
+        username: root
+        password: root
+        poolName: hikari数据库连接池
+        maximumPoolSize: 200
+        minimum-idle: 5
+        autoCommit: true
+        idleTimeout: 120000  #连接空闲时间
+        maxLifetime: 1800000 #一个连接的存活时长ms 30分钟
+        connectionTimeout: 5000 #获取连接最大等待时长 5s
+      test1:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        jdbcUrl: jdbc:mysql://47.95.213.129:3306/test1?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&failOverReadOnly=false
         username: root
         password: root
         poolName: hikari数据库连接池
@@ -48,10 +61,15 @@ sharding:
       sharding:
         tables:
           user:
-            actual-data-nodes: xx-sharding-jdbc.user$->{0..9}
+            actual-data-nodes: test$->{0..1}.user$->{0..9}
+            database-strategy:
+              standard:
+                sharding-column: user_id
+                preciseAlgorithmClassName: xxmsshargingjdbc.xxmsshargingjdbc.sharding.MyAlgorithmDB
             table-strategy:
               standard:
                 sharding-column: user_id
-                preciseAlgorithmClassName: xxmsshargingjdbc.xxmsshargingjdbc.sharding.MyAlgorithm
+                preciseAlgorithmClassName: xxmsshargingjdbc.xxmsshargingjdbc.sharding.MyAlgorithmTable
 shardxx:
   shardNode: 10
+  tableNode: 2
