@@ -1,0 +1,26 @@
+server:
+  port: 8888
+  tomcat:
+    max-threads: 800
+    accept-count: 2000
+    min-spare-threads: 10
+spring:
+  profiles:
+    active: prod
+  application:
+    name: xx-sharding-jdbc
+  datasource:
+    name: xx-sharding-jdbc_DS
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://47.95.213.129:3306/test?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&failOverReadOnly=false
+    username: root
+    password: root
+    hikari:
+      poolName: hikari数据库连接池
+      maximumPoolSize: 200
+      minimumIdle: 5
+      autoCommit: true
+      idleTimeout: 120000  #连接空闲时间
+      maxLifetime: 1800000 #一个连接的存活时长ms 30分钟
+      connectionTimeout: 5000 #获取连接最大等待时长 5s
